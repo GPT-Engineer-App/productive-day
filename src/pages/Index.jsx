@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Heading, Input, Button, Text, VStack, HStack, IconButton, Spacer, Checkbox } from "@chakra-ui/react";
-import { FaPlus, FaTrash } from "react-icons/fa";
+import { FaPlus, FaTrash, FaMapMarkerAlt } from "react-icons/fa";
 
 const Index = () => {
   const [todos, setTodos] = useState([]);
@@ -25,9 +25,16 @@ const Index = () => {
     setTodos(newTodos);
   };
 
+  const [showMap, setShowMap] = useState(false);
+
   return (
-    <Box maxWidth="400px" margin="auto" mt={8}>
-      <Heading mb={8}>Todo App</Heading>
+    <Box maxWidth="600px" margin="auto" mt={8}>
+      <Heading mb={8}>
+        Todo App
+        <Button leftIcon={<FaMapMarkerAlt />} onClick={() => setShowMap(!showMap)} ml={4} size="sm">
+          {showMap ? "Hide Map" : "Show Map"}
+        </Button>
+      </Heading>
       <VStack spacing={4} align="stretch">
         <HStack>
           <Input value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Enter a todo" />
@@ -46,6 +53,12 @@ const Index = () => {
           </HStack>
         ))}
       </VStack>
+
+      {showMap && (
+        <Box mt={8}>
+          <iframe width="100%" height="400" frameBorder="0" src={`https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=Space+Needle,Seattle+WA`} allowFullScreen></iframe>
+        </Box>
+      )}
     </Box>
   );
 };
