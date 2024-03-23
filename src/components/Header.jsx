@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <Flex as="header" align="center" justify="space-between" wrap="wrap" padding="1.5rem" bg="gray.100">
       <Heading as="h1" size="lg">
-        Todo App
+        Todo App 📝
       </Heading>
       <Spacer />
       <Box>
